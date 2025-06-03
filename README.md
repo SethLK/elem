@@ -22,6 +22,5 @@ How you can mess with elem
 
 **License**:
 
--   Gooba is distributed under the  **MIT**  License. It is open-source and  
-    free to use, including for commercial purposes, but remember that it  
-    is not safe for production environments at this time.
+-   Elem is distributed under the  **MIT**  License. It is open-source and  
+    free to use, including for commercial purposes.
