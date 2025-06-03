@@ -1,0 +1,31 @@
+# Compiled object files
+*.o
+
+# Build directories
+/obj/
+/bin/
+/build/
+
+# Executables
+*.out
+*.exe
+main
+
+# Backup or temp files
+*~
+*.swp
+*.tmp
+
+# Logs or messages
+message.txt
+test.txt
+iddo.txt
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled or intermediate files from editor
+*.log
+*.aux
+
