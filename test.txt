@@ -1,0 +1,165 @@
+while (fgets(String, 1024, fptr))
+    {
+        printf("%d %s", line, String);
+        
+        char token[1024];
+        int tokenIndex = 0;
+        for (int i = 0; String[i]; i++)
+        {
+            char currentChar = String[i];
+            if (isspace(currentChar))
+            {
+                if (tokenIndex > 0)
+                {
+                    token[tokenIndex] = '\0';
+                    processToken(token);
+                    tokenIndex = 0;
+                }
+            }
+            else if (currentChar == '=' || currentChar == ':' || currentChar == ';')
+            {
+                if (tokenIndex > 0)
+                {
+                    token[tokenIndex] = '\0';
+                    processToken(token);
+                    tokenIndex = 0;
+                }
+            }
+            else
+            {
+                token[tokenIndex++] = currentChar;
+            }
+        }
+        line++;
+    }
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+typedef enum
+{
+    String,
+    Char,
+    Int,
+    Bool,
+} Type;
+
+typedef struct {
+    Type dataType;
+    char name[255];
+    char data[255];
+    struct Node *next;
+} Node;
+
+Node *createNode(Type dataType)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    if (!newNode)
+    {
+        printf("Memory Allocation failed");
+        exit(1);
+    }
+
+    newNode->dataType = dataType;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void appendNode(Node **headRef, Type dataType)
+{
+    Node *newNode = createNode(dataType);
+
+    Node *last = *headRef;
+
+    if (*headRef == NULL)
+    {
+        *headRef = newNode;
+        return;
+    }
+
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+
+    last->next = newNode;
+}
+
+void printList(Node **head)
+{
+    Node *temp = *head;
+    while (temp != NULL)
+    {
+        printf("%d -> ", temp->dataType);
+        temp = temp->next;
+    }
+    printf("Null");
+}
+
+int getToken()
+{
+    int lastChar = ' ';
+    while (isspace(lastChar))
+    {
+    }
+}
+
+void processToken(char *token)
+{
+    // Token processing logic (e.g., print token, classify it, etc.)
+    printf("Token: %s\n", token);
+}
+
+int main(int argc, char const *argv[])
+{
+    FILE *fptr;
+    fptr = fopen("./app.elem", "r");
+
+    char String[1024];
+    int line = 1;
+    while (fgets(String, 1024, fptr))
+    {
+        printf("%d %s", line, String);
+        
+        char token[1024];
+        int tokenIndex = 0;
+        for (int i = 0; String[i]; i++)
+        {
+            char currentChar = String[i];
+            if (isspace(currentChar))
+            {
+                if (tokenIndex > 0)
+                {
+                    token[tokenIndex] = '\0';
+                    processToken(token);
+                    tokenIndex = 0;
+                }
+            }
+            else if (currentChar == '=' || currentChar == ':' || currentChar == ';')
+            {
+                if (tokenIndex > 0)
+                {
+                    token[tokenIndex] = '\0';
+                    processToken(token);
+                    tokenIndex = 0;
+                }
+            }
+            else
+            {
+                token[tokenIndex++] = currentChar;
+            }
+        }
+        line++;
+    }
+
+    fclose(fptr);
+
+    // Node* head = createNode(Int);
+    // appendNode(&head, String);
+    // printList(&head);
+
+    return 0;
+}
